@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using HarmonyLib;
-using System.IO;
+﻿using HarmonyLib;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 
 namespace SaveDataExtended
 {
@@ -15,11 +15,11 @@ namespace SaveDataExtended
 			{
 				return;
 			}
-			
+
 			var serializedData = JsonConvert.SerializeObject(saveDatas, JsonSerializerSettings);
 
 			SaveDataExt.LogSource.LogDebug(serializedData);
-			File.WriteAllText(presetPath + ".extData",serializedData);
+			File.WriteAllText(presetPath + ".extData", serializedData);
 		}
 
 		private static void HandlePresetLoaded(Maid maid, string presetPath, CharacterMgr.PresetType presetType)
@@ -54,7 +54,7 @@ namespace SaveDataExtended
 				Storage.CurrentMaidData.Remove(maid.status.guid);
 			}
 
-			final:
+		final:
 			Events.OnPresetLoaded(maid, presetType);
 		}
 

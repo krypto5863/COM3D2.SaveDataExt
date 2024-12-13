@@ -1,9 +1,9 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace SaveDataExtended
 {
@@ -16,6 +16,7 @@ namespace SaveDataExtended
 		};
 
 		internal static void RegisterHooks(Harmony harmony) => harmony.PatchAll(typeof(Hooks));
+
 		private static void HandleSaved(string presetPath)
 		{
 			Events.OnSaveBeingSaved();
@@ -38,7 +39,7 @@ namespace SaveDataExtended
 			}
 
 			var serializedData = JsonConvert.SerializeObject(saveData, JsonSerializerSettings);
-			File.WriteAllText(presetPath + ".extData",serializedData);
+			File.WriteAllText(presetPath + ".extData", serializedData);
 
 			Storage.CurrentData = Storage.Data;
 			Storage.CurrentMaidData = Storage.MaidData;
@@ -83,12 +84,12 @@ namespace SaveDataExtended
 					}
 				}
 			}
-			catch(Exception exception)
+			catch (Exception exception)
 			{
 				SaveDataExt.LogSource.LogError($"A error occured while trying to read the extra save data from a save! It will be discarded: {exception.Message}\n{exception.StackTrace}");
 			}
 
-			final:
+		final:
 			Events.OnSaveLoaded();
 		}
 
