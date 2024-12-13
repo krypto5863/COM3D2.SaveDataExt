@@ -12,7 +12,7 @@ namespace SaveDataExtended
 		private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
 		{
 			TypeNameHandling = TypeNameHandling.Auto,
-			Converters = { new ColorJsonConverter(), new TextureJsonConverter() }
+			Converters = { new ColorJsonConverter(), new TextureJsonConverter(), new Vector4JsonConverter() }
 		};
 
 		internal static void RegisterHooks(Harmony harmony) => harmony.PatchAll(typeof(Hooks));
@@ -39,17 +39,24 @@ namespace SaveDataExtended
 
 			var serializedData = JsonConvert.SerializeObject(saveData, JsonSerializerSettings);
 			File.WriteAllText(presetPath + ".extData",serializedData);
+
+			Storage.CurrentData = Storage.Data;
+			Storage.CurrentMaidData = Storage.MaidData;
+
+			Storage.MaidData = null;
+			Storage.Data = null;
 		}
 
 		private static void HandleLoaded(string presetPath)
 		{
+			Storage.CurrentData = null;
+			Storage.CurrentMaidData = null;
+
 			var extDataPath = presetPath + ".extData";
 
 			if (File.Exists(extDataPath) == false)
 			{
 				SaveDataExt.LogSource.LogDebug("No data to be loaded was found!");
-				Storage.Data = null;
-				Storage.MaidData = null;
 				goto final;
 			}
 
@@ -62,35 +69,23 @@ namespace SaveDataExtended
 				if (allData == null)
 				{
 					SaveDataExt.LogSource.LogError("The data loaded from a save was null! It will be discarded!");
-					Storage.Data = null;
-					Storage.MaidData = null;
 				}
 				else
 				{
 					if (allData[0] is Dictionary<string, SaveData> saveData)
 					{
-						Storage.Data = saveData;
-					}
-					else
-					{
-						Storage.Data = null;
+						Storage.CurrentData = saveData;
 					}
 
 					if (allData[1] is Dictionary<string, Dictionary<string, SaveData>> maidData)
 					{
-						Storage.MaidData = maidData;
-					}
-					else
-					{
-						Storage.MaidData = null;
+						Storage.CurrentMaidData = maidData;
 					}
 				}
 			}
 			catch(Exception exception)
 			{
 				SaveDataExt.LogSource.LogError($"A error occured while trying to read the extra save data from a save! It will be discarded: {exception.Message}\n{exception.StackTrace}");
-				Storage.Data = null;
-				Storage.MaidData = null;
 			}
 
 			final:

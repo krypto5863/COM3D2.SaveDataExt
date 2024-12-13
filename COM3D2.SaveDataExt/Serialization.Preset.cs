@@ -7,9 +7,9 @@ namespace SaveDataExtended
 {
 	internal static partial class Serialization
 	{
-		private static void HandlePresetSaved(Maid maid, string presetPath)
+		private static void HandlePresetSaved(Maid maid, string presetPath, CharacterMgr.PresetType presetType)
 		{
-			Events.OnPresetBeingSaved(maid);
+			Events.OnPresetBeingSaved(maid, presetType);
 
 			if (Storage.MaidData.TryGetValue(maid.status.guid, out var saveDatas) == false || saveDatas.Count == 0)
 			{
@@ -22,13 +22,13 @@ namespace SaveDataExtended
 			File.WriteAllText(presetPath + ".extData",serializedData);
 		}
 
-		private static void HandlePresetLoaded(Maid maid, string presetPath)
+		private static void HandlePresetLoaded(Maid maid, string presetPath, CharacterMgr.PresetType presetType)
 		{
 			var extDataPath = presetPath + ".extData";
 
 			if (File.Exists(extDataPath) == false)
 			{
-				Storage.MaidData.Remove(maid.status.guid);
+				Storage.CurrentMaidData.Remove(maid.status.guid);
 				goto final;
 			}
 
@@ -41,21 +41,21 @@ namespace SaveDataExtended
 				if (maidData == null)
 				{
 					SaveDataExt.LogSource.LogError("The data loaded from a preset was null! It will be discarded!");
-					Storage.MaidData.Remove(maid.status.guid);
+					Storage.CurrentMaidData.Remove(maid.status.guid);
 				}
 				else
 				{
-					Storage.MaidData[maid.status.guid] = maidData;
+					Storage.CurrentMaidData[maid.status.guid] = maidData;
 				}
 			}
 			catch
 			{
 				SaveDataExt.LogSource.LogError("A error occured while trying to read the extra save data from a preset! It will be discarded!");
-				Storage.MaidData.Remove(maid.status.guid);
+				Storage.CurrentMaidData.Remove(maid.status.guid);
 			}
 
 			final:
-			Events.OnPresetLoaded(maid);
+			Events.OnPresetLoaded(maid, presetType);
 		}
 
 		private static void HandlePresetDeleted(string presetPath)
@@ -72,10 +72,10 @@ namespace SaveDataExtended
 		{
 			[HarmonyPatch(typeof(CharacterMgr), nameof(CharacterMgr.PresetSave))]
 			[HarmonyPostfix]
-			private static void OnPresetSaved(CharacterMgr __instance, Maid __0, CharacterMgr.Preset __result)
+			private static void OnPresetSaved(CharacterMgr __instance, Maid __0, CharacterMgr.PresetType __1, CharacterMgr.Preset __result)
 			{
 				var presetPath = Path.Combine(__instance.PresetDirectory, __result.strFileName);
-				HandlePresetSaved(__0, presetPath);
+				HandlePresetSaved(__0, presetPath, __1);
 			}
 
 			[HarmonyPatch(typeof(CharacterMgr), nameof(CharacterMgr.PresetSet), typeof(Maid), typeof(CharacterMgr.Preset))]
@@ -83,7 +83,7 @@ namespace SaveDataExtended
 			private static void OnPresetLoaded(CharacterMgr __instance, Maid __0, CharacterMgr.Preset __1)
 			{
 				var presetPath = Path.Combine(__instance.PresetDirectory, __1.strFileName);
-				HandlePresetLoaded(__0, presetPath);
+				HandlePresetLoaded(__0, presetPath, __1.ePreType);
 			}
 
 			[HarmonyPatch(typeof(CharacterMgr), nameof(CharacterMgr.PresetDelete))]

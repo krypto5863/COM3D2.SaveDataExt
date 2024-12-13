@@ -11,7 +11,7 @@ namespace SaveDataExtended
 		/// <summary>
 		/// Represents a method that handles events when a preset is being saved for a specified <see cref="Maid"/>.
 		/// </summary>
-		public delegate void PresetSaveEventHandler(Maid maid);
+		public delegate void PresetSaveEventHandler(Maid maid, CharacterMgr.PresetType presetType);
 
 		/// <summary>
 		/// Event triggered when a preset is being saved.
@@ -25,7 +25,7 @@ namespace SaveDataExtended
 		/// <summary>
 		/// Represents a method that handles events when a preset is being loaded for a specified <see cref="Maid"/>.
 		/// </summary>
-		public delegate void PresetLoadEventHandler(Maid maid);
+		public delegate void PresetLoadEventHandler(Maid maid, CharacterMgr.PresetType presetType);
 
 		/// <summary>
 		/// Event triggered when a preset is being loaded.
@@ -66,7 +66,7 @@ namespace SaveDataExtended
 		/// </remarks>
 		public static event LoadEventHandler SaveLoaded;
 
-		internal static void OnPresetBeingSaved(Maid maid)
+		internal static void OnPresetBeingSaved(Maid maid, CharacterMgr.PresetType presetType)
 		{
 			if (PresetBeingSaved == null)
 				return;
@@ -76,7 +76,7 @@ namespace SaveDataExtended
 				var handler = (PresetSaveEventHandler)entry;
 				try
 				{
-					handler.Invoke(maid);
+					handler.Invoke(maid, presetType);
 				}
 				catch (Exception ex)
 				{
@@ -84,7 +84,7 @@ namespace SaveDataExtended
 				}
 			}
 		}
-		internal static void OnPresetLoaded(Maid maid)
+		internal static void OnPresetLoaded(Maid maid, CharacterMgr.PresetType presetType)
 		{
 			if (PresetLoaded == null)
 				return;
@@ -94,7 +94,7 @@ namespace SaveDataExtended
 				var handler = (PresetLoadEventHandler)entry;
 				try
 				{
-					handler.Invoke(maid);
+					handler.Invoke(maid, presetType);
 				}
 				catch (Exception ex)
 				{

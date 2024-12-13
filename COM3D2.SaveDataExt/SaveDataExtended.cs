@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Security;
+﻿using System.Security;
 using System.Security.Permissions;
 using BepInEx;
 using BepInEx.Logging;
@@ -14,12 +11,12 @@ using HarmonyLib;
 namespace SaveDataExtended
 {
 	[BepInPlugin(Guid, PluginName, Version)]
-	internal class SaveDataExt : BaseUnityPlugin
+	public class SaveDataExt : BaseUnityPlugin
 	{
 		/// <summary> Plugin GUID </summary>
-		public const string Guid = "krypto5863.saveDataExt.com3d2.com";
+		public const string Guid = "org.krypto5863.com3d2.savedataextended";
 		/// <summary> Plugin name </summary>
-		public const string PluginName = "Events";
+		public const string PluginName = "SaveDataExtended";
 		/// <summary> Plugin version </summary>
 		public const string Version = "1.0";
 		internal static SaveDataExt Instance { get; private set; }
