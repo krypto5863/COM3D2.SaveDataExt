@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COM3D2.SaveDataExt", "COM3D2.SaveDataExt\COM3D2.SaveDataExt.csproj", "{81BF7AE6-A5DE-4A93-AF65-2E14A3CB0BEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COM3D2.SaveDataExt", "COM3D2.SaveDataExt\COM3D2.SaveDataExt.csproj", "{815254FA-082C-4B7C-8851-1C676218AEB6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "COM3D2.SaveDataExt.Base", "COM3D2.SaveDataExt.Base\COM3D2.SaveDataExt.Base.shproj", "{B448F5D1-EA57-4939-9ACF-6328CD4875FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COM3D2.SaveDataExt.CRE", "COM3D2.SaveDataExt.CRE\COM3D2.SaveDataExt.CRE.csproj", "{319F096A-C6CD-451E-9A95-B969765B0781}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +15,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{81BF7AE6-A5DE-4A93-AF65-2E14A3CB0BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81BF7AE6-A5DE-4A93-AF65-2E14A3CB0BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81BF7AE6-A5DE-4A93-AF65-2E14A3CB0BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81BF7AE6-A5DE-4A93-AF65-2E14A3CB0BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{815254FA-082C-4B7C-8851-1C676218AEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{815254FA-082C-4B7C-8851-1C676218AEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{815254FA-082C-4B7C-8851-1C676218AEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{815254FA-082C-4B7C-8851-1C676218AEB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{319F096A-C6CD-451E-9A95-B969765B0781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{319F096A-C6CD-451E-9A95-B969765B0781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{319F096A-C6CD-451E-9A95-B969765B0781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{319F096A-C6CD-451E-9A95-B969765B0781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB3C450B-2EA1-47B4-B971-F8C3EFEC384E}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		COM3D2.SaveDataExt.Base\COM3D2.SaveDataExt.Base.projitems*{319f096a-c6cd-451e-9a95-b969765b0781}*SharedItemsImports = 5
+		COM3D2.SaveDataExt.Base\COM3D2.SaveDataExt.Base.projitems*{815254fa-082c-4b7c-8851-1c676218aeb6}*SharedItemsImports = 4
+		COM3D2.SaveDataExt.Base\COM3D2.SaveDataExt.Base.projitems*{b448f5d1-ea57-4939-9acf-6328cd4875fc}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
