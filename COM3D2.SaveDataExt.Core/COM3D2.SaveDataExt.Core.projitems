@@ -3,10 +3,10 @@
   <PropertyGroup>
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>b448f5d1-ea57-4939-9acf-6328cd4875fc</SharedGUID>
+    <SharedGUID>fc16180b-1714-4960-939c-294a50c0c0a2</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>COM3D2.SaveDataExt.Base</Import_RootNamespace>
+    <Import_RootNamespace>COM3D2.SaveDataExt.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Events.cs" />
