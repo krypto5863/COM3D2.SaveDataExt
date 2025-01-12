@@ -1,11 +1,12 @@
 ﻿using System.Security;
+using System.Security.Permissions;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 
 //These two lines tell your plugin to not give a flying fuck about accessing private variables/classes whatever. It requires a publicized stub of the library with those private objects though.
 [module: UnverifiableCode]
-//[assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
+[assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 
 namespace SaveDataExtended
 {
