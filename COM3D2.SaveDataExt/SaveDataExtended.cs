@@ -18,7 +18,7 @@ namespace SaveDataExtended
 		/// <summary> Plugin name </summary>
 		public const string PluginName = "SaveDataExtended";
 		/// <summary> Plugin version </summary>
-		public const string Version = "1.0";
+		public const string Version = "1.1";
 		internal static SaveDataExt Instance { get; private set; }
 		internal static ManualLogSource LogSource => Instance.Logger;
 

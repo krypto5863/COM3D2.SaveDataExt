@@ -54,7 +54,7 @@ namespace SaveDataExtended
 				Storage.CurrentMaidData.Remove(maid.status.guid);
 			}
 
-		final:
+			final:
 			Events.OnPresetLoaded(maid, presetType);
 		}
 

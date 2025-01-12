@@ -89,7 +89,7 @@ namespace SaveDataExtended
 				SaveDataExt.LogSource.LogError($"A error occured while trying to read the extra save data from a save! It will be discarded: {exception.Message}\n{exception.StackTrace}");
 			}
 
-		final:
+			final:
 			Events.OnSaveLoaded();
 		}
 

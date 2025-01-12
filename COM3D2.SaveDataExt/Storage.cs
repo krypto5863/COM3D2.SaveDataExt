@@ -15,7 +15,7 @@ namespace SaveDataExtended
 
 		internal static Dictionary<string, Dictionary<string, SaveData>> CurrentMaidData
 		{
-			get => _currentMaidData ?? (_currentMaidData = new Dictionary<string, Dictionary<string, SaveData>>());
+			get => _currentMaidData ??= new Dictionary<string, Dictionary<string, SaveData>>();
 			set => _currentMaidData = value;
 		}
 
@@ -23,7 +23,7 @@ namespace SaveDataExtended
 
 		internal static Dictionary<string, Dictionary<string, SaveData>> MaidData
 		{
-			get => _maidData ?? (_maidData = new Dictionary<string, Dictionary<string, SaveData>>());
+			get => _maidData ??= new Dictionary<string, Dictionary<string, SaveData>>();
 			set => _maidData = value;
 		}
 
@@ -34,7 +34,7 @@ namespace SaveDataExtended
 
 		internal static Dictionary<string, SaveData> CurrentData
 		{
-			get => _currentData ?? (_currentData = new Dictionary<string, SaveData>());
+			get => _currentData ??= new Dictionary<string, SaveData>();
 			set => _currentData = value;
 		}
 
@@ -42,7 +42,7 @@ namespace SaveDataExtended
 
 		internal static Dictionary<string, SaveData> Data
 		{
-			get => _data ?? (_data = new Dictionary<string, SaveData>());
+			get => _data ??= new Dictionary<string, SaveData>();
 			set => _data = value;
 		}
 

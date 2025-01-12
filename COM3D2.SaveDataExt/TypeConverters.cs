@@ -9,18 +9,20 @@ namespace SaveDataExtended
 	{
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
-			if (value is Texture2D texture)
+			if (!(value is Texture2D texture))
 			{
-				writer.WriteStartObject(); // Start of the object
-
-				writer.WritePropertyName("name");
-				writer.WriteValue(texture.name);
-
-				writer.WritePropertyName("data");
-				writer.WriteValue(Convert.ToBase64String(texture.EncodeToPNG())); // Convert byte array to Base64 string
-
-				writer.WriteEndObject(); // End of the object
+				return;
 			}
+
+			writer.WriteStartObject(); // Start of the object
+
+			writer.WritePropertyName("name");
+			writer.WriteValue(texture.name);
+
+			writer.WritePropertyName("data");
+			writer.WriteValue(Convert.ToBase64String(texture.EncodeToPNG())); // Convert byte array to Base64 string
+
+			writer.WriteEndObject(); // End of the object
 		}
 
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
