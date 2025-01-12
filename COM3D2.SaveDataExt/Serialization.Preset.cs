@@ -54,7 +54,7 @@ namespace SaveDataExtended
 				Storage.CurrentMaidData.Remove(maid.status.guid);
 			}
 
-			final:
+		final:
 			Events.OnPresetLoaded(maid, presetType);
 		}
 
@@ -78,11 +78,7 @@ namespace SaveDataExtended
 				HandlePresetSaved(__0, presetPath, __1);
 			}
 
-#if CRE
-			[HarmonyPatch(typeof(CharacterMgr), nameof(CharacterMgr.PresetSet), typeof(Maid), typeof(CharacterMgr.Preset), typeof(bool))]
-#else
 			[HarmonyPatch(typeof(CharacterMgr), nameof(CharacterMgr.PresetSet), typeof(Maid), typeof(CharacterMgr.Preset))]
-#endif
 			[HarmonyPostfix]
 			private static void OnPresetLoaded(CharacterMgr __instance, Maid __0, CharacterMgr.Preset __1)
 			{

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Security;
+﻿using System.Security;
 using System.Security.Permissions;
 using BepInEx;
 using BepInEx.Logging;
