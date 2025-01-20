@@ -78,7 +78,7 @@ namespace SaveDataExtended
 				HandlePresetSaved(__0, presetPath, __1);
 			}
 
-			[HarmonyPatch(typeof(CharacterMgr), nameof(CharacterMgr.PresetSet), typeof(Maid), typeof(CharacterMgr.Preset))]
+			[HarmonyPatch(typeof(CharacterMgr), nameof(CharacterMgr.PresetSet))]
 			[HarmonyPostfix]
 			private static void OnPresetLoaded(CharacterMgr __instance, Maid __0, CharacterMgr.Preset __1)
 			{
